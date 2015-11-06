@@ -5,7 +5,8 @@ def main
     
     #puts "the sum of even fibonaccis under #{num} is #{even_fibonacci_sum(num)}"
     #puts get_factors(num)
-    puts is_palindrome?(num)
+    #puts is_palindrome?(num)
+    puts largest_palindrome(num)
     
 end
 
@@ -80,6 +81,34 @@ end
 
 def is_palindrome?(num)
     num.to_s == num.to_s.reverse
+end
+
+def get_all_sums_of_x_digit_numbers(digits)
+    start = 1
+    (digits - 1).times { start *= 10 }
+    finish = start * 10
+    sums = []
+    
+    (start...finish).each do |x|
+        (start...finish).each do |y|
+            sums << x * y
+        end
+    end
+    
+    sums.sort.uniq
+end
+
+def largest_palindrome(digits)
+    a = get_all_sums_of_x_digit_numbers(digits)
+    
+    largest_p = nil
+    
+    a.reverse_each do |n|
+        largest_p = n if is_palindrome?(n)
+        break if largest_p
+    end
+    
+    largest_p
 end
 
 main
