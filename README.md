@@ -1,0 +1,1 @@
+Just a repository to practice random ruby problems and get more comfortable using github
