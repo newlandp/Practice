@@ -4,7 +4,8 @@ def main
     num = gets.chomp.to_i
     
     #puts "the sum of even fibonaccis under #{num} is #{even_fibonacci_sum(num)}"
-    puts largest_prime_factor(num)
+    #puts get_factors(num)
+    puts is_palindrome?(num)
     
 end
 
@@ -75,6 +76,10 @@ def largest_prime_factor(num)
     
     prime_factors.delete(1)
     prime_factors.max
+end
+
+def is_palindrome?(num)
+    num.to_s == num.to_s.reverse
 end
 
 main
