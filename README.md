@@ -1,1 +1,1 @@
-Just a repository to practice random ruby problems and get more comfortable using github
+Just a repository to practice random ruby problems and get more comfortable using github. Collection of random ongoing methods (mostly euler problems).
