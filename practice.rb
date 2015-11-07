@@ -6,7 +6,7 @@ def main
     #puts "the sum of even fibonaccis under #{num} is #{even_fibonacci_sum(num)}"
     #puts get_factors(num)
     #puts is_palindrome?(num)
-    puts largest_palindrome(num)
+    puts smallest_multiple_1_to_x(num)
     
 end
 
@@ -109,6 +109,21 @@ def largest_palindrome(digits)
     end
     
     largest_p
+end
+
+def smallest_multiple_1_to_x(max)
+    jump = max * (max - 1)
+    index = jump
+    count = 0
+    
+    until count == max
+        count = 0
+        (1..max).each { |n| count += 1 if index % n == 0 }
+        
+        index += jump
+    end
+    
+    index -= jump
 end
 
 main
