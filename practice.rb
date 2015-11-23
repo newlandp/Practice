@@ -1,12 +1,21 @@
 def main
     
-    print "what is your max number? "
-    num = gets.chomp.to_i
+    # puts "what is your number? "
+    # num = gets.chomp.to_i
+    # puts "what is your exponent? "
+    # exponent = gets.chomp.to_i
     
-    #puts "the sum of even fibonaccis under #{num} is #{even_fibonacci_sum(num)}"
-    #puts get_factors(num)
-    #puts is_palindrome?(num)
-    puts smallest_multiple_1_to_x(num)
+    # #puts "the sum of even fibonaccis under #{num} is #{even_fibonacci_sum(num)}"
+    # #puts get_factors(num)
+    # #puts is_palindrome?(num)
+    # puts power_digit_sum(num, exponent)
+    # puts "what is your string? "
+    # str = gets.chomp
+    # puts "what is your shift factor? "
+    # num = gets.chomp.to_i
+    # puts caesar_cipher(str, num)
+    
+    puts factorial_digit_sum(100)
     
 end
 
@@ -124,6 +133,107 @@ def smallest_multiple_1_to_x(max)
     end
     
     index -= jump
+end
+
+def sum_square_difference(max)
+    sum_of_squares = 0
+    square_of_sums = 0
+    
+    (1..max).each { |n| sum_of_squares += n ** 2 }
+    
+    (1..max).each { |n| square_of_sums += n }
+    square_of_sums = square_of_sums ** 2
+    
+    square_of_sums - sum_of_squares
+end
+
+def nth_prime(num)
+    primes = 2
+    place = 3
+    while primes < num
+        place += 2
+        unless place % 3 == 0
+            primes += 1 if is_prime?(place)
+        end
+    end
+    place
+end
+
+def number_of_factors(num)
+    get_factors(num).length
+end
+
+def triangular_number_divisible_by(num)
+    add = 1
+    triangular_number = add
+    
+    until number_of_factors(triangular_number) >= num
+        add += 1
+        triangular_number += add
+    end
+    
+    triangular_number
+end
+
+def sum_of_digits(num)
+    num = num.to_s.split(//)
+    total = 0
+    
+    num.each { |n| total += n.to_i }
+    
+    total
+end
+
+def power_digit_sum(num, exponent)
+    num = num ** exponent
+    sum_of_digits(num)
+end
+
+def caesar_cipher(string, shift)
+    string_array = []
+    new_string = []
+    string.downcase!
+    
+    string.each_byte do |c|
+        string_array << c
+    end
+    
+    string_array.each do |c|
+        c += shift
+        c -= 26 if c > 122
+        c = c.chr
+        new_string << c
+    end
+    new_string.join("")
+end
+
+def stock_picker(stocks)
+    max_difference = 0
+    days = []
+    
+    for i in (0...(stocks.length - 1))
+        for j in ((i + 1)...stocks.length)
+            if (stocks[j] - stocks[i]) > max_difference
+                max_difference = (stocks[j] - stocks[i])
+                days[0] = i
+                days[1] = j
+            end
+        end
+    end
+    
+    days
+end
+
+def factorial_digit_sum(num)
+    total = 1
+    for n in 1..num
+        total = total * n
+    end
+    total = total.to_s
+    numbers = total.split(//)
+    sum = 0
+    numbers.each { |n| sum += n.to_i }
+    sum
 end
 
 main
